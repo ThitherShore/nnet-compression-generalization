@@ -1,6 +1,10 @@
 #! /usr/bin/env python3.6
 
 import tensorflow as tf
+import sys
+sys.path.append("../../")
+sys.path.append("../../nnet")
+sys.path.append("../../scripts")
 
 from nnet.preprocessing import normalize_preprocessing
 from nnet.datasets import cifar_random
