@@ -8,7 +8,13 @@ to the hash value of the image.
 import numpy as np
 import tensorflow as tf
 import functools
-from . import DatasetFactory
+
+import sys
+sys.path.append("../datasets");
+sys.path.append("../../")
+sys.path.append("../../nnet")
+
+from datasets import DatasetFactory
 
 
 _FILE_PATTERN = 'cifar10_%s.tfrecord'
