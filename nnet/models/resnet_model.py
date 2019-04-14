@@ -36,7 +36,11 @@ from __future__ import print_function
 import tensorflow as tf
 import numpy as np
 import contextlib
-from . import layers
+
+sys.path.append("../models");
+sys.path.append("../../")
+sys.path.append("../../nnet")
+from models import layers
 
 _BATCH_NORM_DECAY = 0.997
 _BATCH_NORM_EPSILON = 1e-5
