@@ -34,6 +34,10 @@ def train(args, model_fn):
         cifar_random.get_split(args.dataset, num_classes=10, proportion_random=args.proportion_random),
         preprocessing_fn=normalize_preprocessing.preprocess,
         batch_size=128, image_size=32)
+    
+    data_ = cifar_random.get_split(args.dataset, num_classes=10, proportion_random=args.proportion_random)
+    print(data_)
+    print(data_.shape)
 
     params = {
         'learning_rate': lambda: tf.train.piecewise_constant(
