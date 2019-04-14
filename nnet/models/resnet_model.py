@@ -37,6 +37,7 @@ import tensorflow as tf
 import numpy as np
 import contextlib
 
+import sys
 sys.path.append("../models");
 sys.path.append("../../")
 sys.path.append("../../nnet")
