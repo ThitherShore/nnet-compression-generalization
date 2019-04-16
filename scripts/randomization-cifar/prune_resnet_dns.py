@@ -105,7 +105,7 @@ def evaluate(args, model_fn):
                              preprocessing_fn=normalize_preprocessing.preprocess,
                              image_size=32, batch_size=128, n_epochs=1)
 
-    estimator = tf.estimator.Estimator(model_fn, model_dir=args.model_dir)
+    estimator = tf.estimator.Estimator(model_fn, model_dir=args.train_dir)  # args.model_dir
     estimator.evaluate(input_fn)
 
 
