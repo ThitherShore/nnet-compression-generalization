@@ -21,7 +21,7 @@ if __name__ == "__main__":
     	os.system(f"python3 prune_resnet_dns.py {trn_or_ev} \
             --dataset cifar10_{trn_or_ts}.tfrecord \
             --train-dir out-prune-{int(prop_rand*100)}-{int(sp*10)} \
-            --warm_start out-{int(prop_rand*100)}/ \
+            --warm-start out-{int(prop_rand*100)} \
             --target-sparsity {sp} \
             --proportion-random {prop_rand} \
             --max-steps {max_steps}")
