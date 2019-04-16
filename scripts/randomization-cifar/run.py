@@ -11,10 +11,10 @@ import numpy as np
 
 if __name__ == "__main__":
 	# sys.argv[1] train or eval: {train, eval}
-    # sys.argv[2] proportion-random
-    trn_or_ev = sys.argv[1] 
-    prop_rand = float(sys.argv[2])
-    max_steps = sys.argv[3] 
+	# sys.argv[2] proportion-random
+	trn_or_ev = sys.argv[1] 
+	prop_rand = float(sys.argv[2])
+	max_steps = sys.argv[3] 
 
 	if trn_or_ev == "train":
 		for sp in np.arange(5, 10)/10:  # sparsity
