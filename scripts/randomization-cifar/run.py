@@ -33,6 +33,7 @@ if __name__ == "__main__":
 				--dataset cifar10_test.tfrecord \
 				--train-dir out-prune-%d-%d \
 				--target-sparsity %s \
+				--proportion-random 0 \
 				--max-steps %s" % (
 					int(prop_rand*100), int(sp*10),
 					str(sp), max_steps))
