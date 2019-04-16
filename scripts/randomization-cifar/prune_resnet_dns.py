@@ -4,6 +4,10 @@
 """
 
 import tensorflow as tf
+import sys
+sys.path.append("../../")
+sys.path.append("../../nnet")
+sys.path.append("../../scripts")
 
 from nnet.datasets import cifar_random
 from nnet.models.resnet_model import cifar10_resnet_v2_generator
