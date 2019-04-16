@@ -35,7 +35,7 @@ if __name__ == "__main__":
 				--target-sparsity %s \
 				--max-steps %s" % (
 					int(prop_rand*100), int(sp*10),
-					str(sp), str(prop_rand), max_steps))
+					str(sp), max_steps))
 	else:
 		raise Exception("Please specify either train or eval!")
 
