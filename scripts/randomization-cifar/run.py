@@ -18,13 +18,17 @@ if __name__ == "__main__":
     max_steps = sys.argv[3] 
 
     for sp in np.arange(5, 10)/10:  # sparsity
-    	os.system(f"python3 prune_resnet_dns.py {trn_or_ev} \
-            --dataset cifar10_{trn_or_ts}.tfrecord \
-            --train-dir out-prune-{int(prop_rand*100)}-{int(sp*10)} \
-            --warm-start out-{int(prop_rand*100)} \
-            --target-sparsity {sp} \
-            --proportion-random {prop_rand} \
-            --max-steps {max_steps}")
+    	#os.system
+    	print("python3 prune_resnet_dns.py %s \
+            --dataset cifar10_%s.tfrecord \
+            --train-dir out-prune-%d-%d \
+            --warm-start out-int(prop_rand*100) \
+            --target-sparsity %s \
+            --proportion-random %s \
+            --max-steps %s" % (
+            	trn_or_ev, trn_or_ts,
+            	int(prop_rand*100), int(sp*10),
+            	str(sp), str(prop_rand), max_steps))
 
 
 
