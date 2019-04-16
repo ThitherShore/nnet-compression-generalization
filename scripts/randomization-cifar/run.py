@@ -21,12 +21,12 @@ if __name__ == "__main__":
     	os.system("python3 prune_resnet_dns.py %s \
             --dataset cifar10_%s.tfrecord \
             --train-dir out-prune-%d-%d \
-            --warm-start out-int(prop_rand*100) \
+            --warm-start out-%d \
             --target-sparsity %s \
             --proportion-random %s \
             --max-steps %s" % (
             	trn_or_ev, trn_or_ts,
-            	int(prop_rand*100), int(sp*10),
+            	int(prop_rand*100), int(sp*10), int(prop_rand*100),
             	str(sp), str(prop_rand), max_steps))
 
 
