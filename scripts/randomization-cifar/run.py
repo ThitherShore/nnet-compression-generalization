@@ -29,13 +29,13 @@ if __name__ == "__main__":
 	            	str(sp), str(prop_rand), max_steps))
 	elif trn_or_ev == "eval":
 		for sp in np.arange(5, 10)/10:  # sparsity
-	    	os.system("python3 prune_resnet_dns.py eval \
-	            --dataset cifar10_test.tfrecord \
-	            --train-dir out-prune-%d-%d \
-	            --target-sparsity %s \
-	            --max-steps %s" % (
-	            	int(prop_rand*100), int(sp*10),
-	            	str(sp), str(prop_rand), max_steps))
+			os.system("python3 prune_resnet_dns.py eval \
+				--dataset cifar10_test.tfrecord \
+				--train-dir out-prune-%d-%d \
+				--target-sparsity %s \
+				--max-steps %s" % (
+					int(prop_rand*100), int(sp*10),
+					str(sp), str(prop_rand), max_steps))
 	else:
 		raise Exception("Please specify either train or eval!")
 
