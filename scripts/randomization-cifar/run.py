@@ -30,7 +30,7 @@ if __name__ == "__main__":
 	elif trn_or_ev == "eval":
 		for sp in np.arange(5, 10)/10:  # sparsity
 			os.system("python3 prune_resnet_dns.py eval \
-				--dataset cifar10_test.tfrecord \
+				--dataset cifar10_train.tfrecord \
 				--train-dir out-prune-%d-%d \
 				--target-sparsity %s \
 				--proportion-random 0 \
