@@ -16,17 +16,17 @@ if __name__ == "__main__":
     prop_rand = float(sys.argv[2])
     max_steps = sys.argv[3] 
 
-    if trn_or_ev == "train":
-	    for sp in np.arange(5, 10)/10:  # sparsity
-	    	os.system("python3 prune_resnet_dns.py train \
-	            --dataset cifar10_train.tfrecord \
-	            --train-dir out-prune-%d-%d \
-	            --warm-start out-%d \
-	            --target-sparsity %s \
-	            --proportion-random %s \
-	            --max-steps %s" % (
-	            	int(prop_rand*100), int(sp*10), int(prop_rand*100),
-	            	str(sp), str(prop_rand), max_steps))
+	if trn_or_ev == "train":
+		for sp in np.arange(5, 10)/10:  # sparsity
+			os.system("python3 prune_resnet_dns.py train \
+				--dataset cifar10_train.tfrecord \
+				--train-dir out-prune-%d-%d \
+				--warm-start out-%d \
+				--target-sparsity %s \
+				--proportion-random %s \
+				--max-steps %s" % (
+					int(prop_rand*100), int(sp*10), int(prop_rand*100),
+					str(sp), str(prop_rand), max_steps))
 	elif trn_or_ev == "eval":
 		for sp in np.arange(5, 10)/10:  # sparsity
 			os.system("python3 prune_resnet_dns.py eval \
