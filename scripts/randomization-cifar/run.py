@@ -15,6 +15,7 @@ if __name__ == "__main__":
     trn_or_ev = sys.argv[1] 
     trn_or_ts = "train" if (trn_or_ev == "train") else "test"
     prop_rand = float(sys.argv[2])
+    max_steps = sys.argv[3] 
 
     for sp in np.arange(5, 10)/10:  # sparsity
     	os.system(f"python3 prune_resnet_dns.py {trn_or_ev} \
@@ -22,7 +23,8 @@ if __name__ == "__main__":
             --train-dir out-prune-{int(prop_rand*100)}-{int(sp*10)} \
             --warm_start out-{int(prop_rand*100)}/ \
             --target-sparsity {sp} \
-            --proportion-random {prop_rand}")
+            --proportion-random {prop_rand} \
+            --max-steps {max_steps}")
 
 
 
