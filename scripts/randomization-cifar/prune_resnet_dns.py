@@ -94,6 +94,7 @@ def train(args, model_fn):
 
     estimator.train(
         input_fn,
+        max_steps=args.max_steps,
         saving_listeners=[
             CommitMaskedValueHook(args.max_steps,
                                   variables_fn=lambda: tf.get_collection(tf.GraphKeys.WEIGHTS))
