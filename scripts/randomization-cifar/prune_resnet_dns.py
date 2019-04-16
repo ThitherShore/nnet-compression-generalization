@@ -89,7 +89,7 @@ def train(args, model_fn):
                              image_size=32, batch_size=128)
 
     estimator = tf.estimator.Estimator(
-        model_fn, model_dir=args.model_dir,
+        model_fn, model_dir=args.train_dir,  # args.model_dir
         params={'warm_start': args.warm_start})
 
     estimator.train(
