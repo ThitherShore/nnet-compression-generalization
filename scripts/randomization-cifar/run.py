@@ -33,10 +33,10 @@ if __name__ == "__main__":
 				--dataset cifar10_train.tfrecord \
 				--train-dir out-prune-%d-%d \
 				--target-sparsity %s \
-				--proportion-random 0 \
+				--proportion-random %s \
 				--max-steps %s" % (
 					int(prop_rand*100), int(sp*10),
-					str(sp), max_steps))
+					str(sp), str(prop_rand), max_steps))
 	else:
 		raise Exception("Please specify either train or eval!")
 
