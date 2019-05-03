@@ -135,6 +135,7 @@ def train(args, model_fn):
 
     estimator.train(
         input_fn,
+        max_steps=args.max_steps,
         hooks=[ExecuteAtSessionCreateHook(op_fn=_quantize_init_op, name='QuantizeInitHook')],
         saving_listeners=[
             quantization.CommitQuantizedValueHook(

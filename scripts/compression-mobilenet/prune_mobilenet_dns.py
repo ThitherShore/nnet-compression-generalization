@@ -149,6 +149,12 @@ def evaluate(args, model_fn):
     estimator = tf.estimator.Estimator(model_fn, model_dir=args.train_dir)
     estimator.evaluate(input_fn)
 
+    total = 0
+    for v in tf.all_variables():
+        total += np.prod(v.get_shape().as_list())
+    print (total)
+    print ((total * 4) / (1024 ** 2))
+
 
 def main():
     tf.logging.set_verbosity(tf.logging.INFO)
