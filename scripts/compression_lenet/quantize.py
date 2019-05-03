@@ -25,7 +25,8 @@ def _train_fn(loss, params):
 
     trainable_variables = set(tf.trainable_variables())
 
-    variables = [v for v in tf.get_collection(MINMAX_COLLECTION) if v in trainable_variables]
+    variables = [v for v in tf.get_collection(
+        MINMAX_COLLECTION) if v in trainable_variables]
 
     optimizer = tf.train.AdamOptimizer()
     train_op = optimizer.minimize(loss, global_step, variables)
@@ -48,10 +49,14 @@ def main():
     import argparse
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--task', choices=['train', 'evaluate', 'train_and_evaluate'], default='train_and_evaluate')
-    parser.add_argument('--dataset-path', type=str, help='the directory containing the MNIST data')
-    parser.add_argument('--warm-start', type=str, help='a checkpoint from which to warm start')
-    parser.add_argument('--num-bits', type=int, default=4, help='the number of bits to use in the codebook')
+    parser.add_argument(
+        '--task', choices=['train', 'evaluate', 'train_and_evaluate'], default='train_and_evaluate')
+    parser.add_argument('--dataset-path', type=str,
+                        help='the directory containing the MNIST data')
+    parser.add_argument('--warm-start', type=str,
+                        help='a checkpoint from which to warm start')
+    parser.add_argument('--num-bits', type=int, default=4,
+                        help='the number of bits to use in the codebook')
     parser.add_argument('--train-dir', type=str)
     parser.add_argument('--max-steps', default=2000, type=int)
 
@@ -72,10 +77,11 @@ def main():
             custom_getter=quantized_variable_getter(
                 codebook_quant,
                 _variable_filter,
-                data_variable_collections=[MINMAX_COLLECTION, tf.GraphKeys.GLOBAL_VARIABLES],
+                data_variable_collections=[
+                    MINMAX_COLLECTION, tf.GraphKeys.GLOBAL_VARIABLES],
                 init_collections=[MINMAX_INIT_COLLECTION]
             ))
-    
+
     def mnist_input_fn(batch_size, n_epochs=None):
         return make_input_fn(
             mnist_data.get_split(args.dataset_path, 'train'),
@@ -83,16 +89,18 @@ def main():
             image_size=28,
             batch_size=batch_size,
             n_epochs=n_epochs)
-    
+
     model_fn = make_model_fn(partial(lenet, scope=scope), _train_fn)
 
-    estimator = tf.estimator.Estimator(model_fn, model_dir=args.train_dir)
+    estimator = tf.estimator.Estimator(
+        model_fn, model_dir=args.train_dir, params=params)
 
     if args.task in ('train', 'train_and_evaluate'):
         estimator.train(
             mnist_input_fn(params.batch_size),
             max_steps=params.max_steps,
-            hooks=[ExecuteAtSessionCreateHook(op_fn=_minmax_init_op, name='MinmaxInitHook')],
+            hooks=[ExecuteAtSessionCreateHook(
+                op_fn=_minmax_init_op, name='MinmaxInitHook')],
             saving_listeners=[CommitQuantizedValueHook(params.max_steps)])
 
     if args.task in ('evaluate', 'train_and_evaluate'):
